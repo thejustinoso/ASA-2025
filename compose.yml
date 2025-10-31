@@ -1,0 +1,9 @@
+services:
+  web:
+    build:
+      context: ./compose
+      dockerfile: Dockerfile.web
+    image: web01
+    container_name: BIND_compo
+    ports: 
+      - "80:80"
