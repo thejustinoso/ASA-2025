@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Ribeiro - Portfólio</title>
+    <style>
+        /* ======================================= */
+        /* 1. VARIÁVEIS DE CORES (DARK MODE PADRÃO) */
+        /* ======================================= */
+        :root {
+            /* Cores Dark Mode (Original) */
+            --cor-principal: #011752;    /* Títulos/Destaques Escuros */
+            --cor-secundaria: #EBEBEB;   /* Fundo das caixas (Claro) */
+            --cor-acento: #24CE6B;       /* Acentos/Links (Verde) */
+            --cor-fundo: #00072D;        /* Fundo principal Escuro */
+            --cor-texto: #EBEBEB;        /* Cor do texto principal Claro */
+            --cor-texto-secao: #011752;  /* Texto dentro das seções */
+        }
+
+        /* ======================================= */
+        /* 2. VARIÁVEIS LIGHT MODE */
+        /* ======================================= */
+        body.light-mode {
+            /* Light Mode */
+            --cor-principal: #ffffff;    /* Fundo do Container */
+            --cor-secundaria: #f0f0f0;   /* Fundo das caixas (Mais claro) */
+            --cor-acento: #D82828;       /* Novo Acento (Vermelho p/ contraste) */
+            --cor-fundo: #011752;        /* Fundo principal (Cor original do cabeçalho) */
+            --cor-texto: #ffffff;        /* Cor do texto principal Escuro */
+            --cor-texto-secao: #333333;  /* Texto dentro das seções */
+        }
+        
+        body.light-mode .container {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra mais suave */
+        }
+
+        body.light-mode header, 
+        body.light-mode header h1 {
+             color: var(--cor-texto); /* Texto branco no header azul */
+             background-color: var(--cor-fundo);
+        }
+        
+        body.light-mode header p {
+             color: var(--cor-acento);
+        }
+
+        body.light-mode section {
+            background-color: var(--cor-secundaria);
+            color: var(--cor-texto-secao);
+        }
+        
+        body.light-mode section h2,
+        body.light-mode .info-item strong,
+        body.light-mode a:hover {
+            color: var(--cor-texto-secao);
+        }
+        
+        /* Ajuste do contraste para links no Light Mode */
+        body.light-mode a {
+             color: var(--cor-acento);
+        }
+        
+        /* ======================================= */
+        /* 3. ESTILOS GERAIS */
+        /* ======================================= */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* Usa as variáveis do root (Dark Mode por padrão) */
+            background-color: var(--cor-fundo); 
+            color: var(--cor-texto);
+            line-height: 1.6;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: var(--cor-principal);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.5s, box-shadow 0.5s;
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: var(--cor-principal);
+            color: var(--cor-secundaria);
+            border-bottom: 5px solid var(--cor-acento);
+            position: relative; /* Para posicionar o botão */
+            transition: background-color 0.5s, border-color 0.5s;
+        }
+
+        header h1 {
+            margin-bottom: 5px;
+            color: var(--cor-secundaria);
+        }
+
+        header p {
+            font-size: 1.1em;
+            font-style: italic;
+            color: var(--cor-acento);
+        }
+
+        /* Seções */
+        section {
+            padding: 20px;
+            margin-top: 20px;
+            background-color: var(--cor-secundaria); 
+            color: var(--cor-texto-secao);
+            border-radius: 8px;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        section h2 {
+            border-bottom: 2px solid var(--cor-acento);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: var(--cor-texto-secao); /* Ajustado para Dark Mode */
+            transition: color 0.5s, border-color 0.5s;
+        }
+
+        /* Lista de Gostos e Outros estilos (mantidos) */
+        ul { list-style: none; padding: 0; }
+        ul li { padding: 5px 0; font-size: 1.1em; }
+
+        ul li::before {
+            content: "•";
+            color: var(--cor-acento);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            transition: color 0.5s;
+        }
+
+        a {
+            color: var(--cor-acento);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--cor-principal); /* No Light Mode isso é a cor de texto da seção */
+            text-decoration: underline;
+        }
+
+        .info-item { margin-bottom: 10px; }
+
+        .info-item strong {
+            display: inline-block;
+            width: 120px;
+            color: var(--cor-texto-secao); /* Ajustado para Dark Mode */
+        }
+        
+        /* ======================================= */
+        /* 4. ESTILO DO BOTÃO DE ALTERNÂNCIA */
+        /* ======================================= */
+        #theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: 2px solid var(--cor-acento);
+            color: var(--cor-acento);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        #theme-toggle:hover {
+            background-color: var(--cor-acento);
+            color: var(--cor-fundo); /* Fundo escuro */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button id="theme-toggle">Modo Claro 💡</button> <h1>Pedro Ribeiro</h1>
+            <p>Estudante de Redes de Computadores no **IFRN**</p>
+        </header>
+
+        <section id="gostos">
+            <h2>&#128187; Gostos e Interesses</h2>
+            <ul>
+                <li>**Cibersegurança**</li>
+                <li>**Linux**</li>
+                <li>Programação em **Lua, Go** e **Dart**</li>
+                <li>Fortaleza EC</li>
+                <li>Shalom</li>
+            </ul>
+        </section>
+
+        <section id="contato">
+            <h2>&#128222; Dados Pessoais e Contato</h2>
+            <div class="info-item">

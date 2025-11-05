@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio de TI</title>
+    <style>
+        :root {
+            --bg-color: #EBEBEB;
+            --text-color: #011752;
+            --title-color: #24CE6B;
+            --accent-color: #00072D;
+            --card-bg: #FFFFFF;
+        }
+
+        .dark-mode {
+            --bg-color: #011752;
+            --text-color: #EBEBEB;
+            --title-color: #24CE6B;
+            --accent-color: #00072D;
+            --card-bg: #011752;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--title-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--accent-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--title-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .services {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--accent-color);
+        }
+
+        .service-card h3 {
+            color: var(--title-color);
+            margin-bottom: 1rem;
+        }
+
+        .skills {
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skills h2 {
+            color: var(--title-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .skill-categories {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .skill-category h3 {
+            color: var(--title-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-list {
+            list-style-type: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .skill-list li:before {
+            content: "▸";
+            color: var(--title-color);
+            position: absolute;
+            left: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid var(--accent-color);
+            margin-top: 2rem;
+        }
+
+        .contact-btn {
+            background-color: var(--title-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .contact-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Portfólio TI</div>
+        <button class="theme-toggle" id="themeToggle">Modo Escuro</button>
+    </header>
+
+    <section class="hero">
+        <h1>Especialista em Tecnologia da Informação</h1>
+        <p class="subtitle">Desenvolvimento, Cibersegurança e Suporte de Hardware</p>
+        <p>Com experiência em diversas áreas de TI, ofereço soluções completas para suas necessidades tecnológicas.</p>
+    </section>
+
+    <section class="services">
+        <div class="service-card">
+            <h3>Desenvolvimento</h3>
+            <p>Criação de aplicações web e mobile, sistemas personalizados e soluções digitais sob medida para seu negócio.</p>
+        </div>
+        <div class="service-card">
+            <h3>Cibersegurança</h3>
+            <p>Proteção de sistemas, análise de vulnerabilidades, implementação de políticas de segurança e treinamento de equipes.</p>
+        </div>
+        <div class="service-card">
+            <h3>Suporte de Hardware</h3>
+            <p>Manutenção preventiva e corretiva, configuração de redes, suporte técnico e otimização de infraestrutura.</p>
+        </div>
+    </section>
+
+    <section class="skills">
+        <h2>Habilidades Técnicas</h2>
+        <div class="skill-categories">
+            <div class="skill-category">
+                <h3>Desenvolvimento</h3>
+                <ul class="skill-list">
+                    <li>HTML, CSS, JavaScript</li>
+                    <li>React, Angular, Vue.js</li>
+                    <li>Node.js, Python, Java</li>
+                    <li>Banco de Dados SQL e NoSQL</li>
+                    <li>APIs REST e GraphQL</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Cibersegurança</h3>
+                <ul class="skill-list">
+                    <li>Análise de Vulnerabilidades</li>
+                    <li>Pentesting e Ethical Hacking</li>
+                    <li>Gestão de Identidade e Acesso</li>
+                    <li>Criptografia e PKI</li>
+                    <li>SIEM e Monitoramento</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Hardware</h3>
+                <ul class="skill-list">
+                    <li>Montagem e Manutenção de PCs</li>
+                    <li>Configuração de Redes</li>
+                    <li>Virtualização e Cloud</li>
+                    <li>Sistemas Operacionais</li>
+                    <li>Recuperação de Dados</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Entre em contato para discutir seu projeto</p>
+        <button class="contact-btn">Solicitar Orçamento</button>
+        <p style="margin-top: 2rem;">&copy; 2023 Portfólio de TI. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Verificar preferência do usuário
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = 'Modo Claro';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = 'Modo Claro';
+            } else {
+                themeToggle.textContent = 'Modo Escuro';
+            }
+        });
+    </script>
+</body>
+</html>
