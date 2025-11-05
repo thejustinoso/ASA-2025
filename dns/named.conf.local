@@ -1,15 +1,19 @@
-;
-; BIND data file for pedro.br zone
-;
-$TTL	604800
-@	IN	SOA	asa.pedro.br. root.pedro.br. (
-			      1		; Serial
-			 604800		; Refresh
-			  86400		; Retry
-			2419200		; Expire
-			 604800 )	; Negative Cache TTL
-;
-@		IN	NS	ns.
-@		IN	A	127.0.0.1
-www		IN	A	10.24.6.54
-portal	IN	CNAME	www
+//
+// Do any local configuration here
+//
+
+zone "siteA.local" {
+    type master;
+    file "/etc/bind/db.siteA.local";
+    allow-transfer {
+        127.0.0.1;
+    };
+};
+
+zone "siteB.local" {
+    type master;
+    file "/etc/bind/db.siteB.local";
+    allow-transfer {
+        127.0.0.1;
+    };
+};
