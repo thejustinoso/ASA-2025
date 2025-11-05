@@ -1,0 +1,11 @@
+//
+// Do any local configuration here
+//
+
+zone "pedro.br"{
+    type master;
+    file "/etc/bind/db.pedro.br";
+    allow-transfer {
+        127.0.0.1;
+    };
+};
