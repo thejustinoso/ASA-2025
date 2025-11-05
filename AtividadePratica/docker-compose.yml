@@ -4,7 +4,7 @@ services:
 #DNS
   dns-server:
     build:
-      context: ./
+      context: ./dns
       dockerfile: Dockerfile
     image:
     container_name: dns-server
@@ -13,10 +13,14 @@ services:
     networks:
       app_network:
         ipv4_address: 172.20.0.10
+    restart: unless-stopped
 
 #WWW
   web1-siteA:
-    image: 
+    build:
+        context: ./sites/siteA
+        dockerfile: Dockerfile
+    image: web1a
     container_name: web1-siteA
     networks:
       app_network:
@@ -25,13 +29,15 @@ services:
         ipv4_address: 172.20.0.11
       - "8081:80"
     restart: unless-stopped
+    dns_search: []
+    restart: unless-stopped
 
 #APP
   web2-siteA:
     build:
-      context: ./
+      context: ./sites/siteA
       dockerfile: Dockerfile
-    image:
+    image: web1b
     container_name: web2-siteA
     networks:
       app_network:
@@ -40,13 +46,15 @@ services:
         ipv4_address: 172.20.0.12
       - "8082:80"
     restart: unless-stopped
+    dns_search: []
+    restart: unless-stopped
 
 #WWW
   web1-siteB:
     build:
-      context: ./
+      context: ./sites/siteB
       dockerfile: Dockerfile
-    image: 
+    image: web2a
     container_name: web1-siteB
     networks:
       app_network:
@@ -56,13 +64,15 @@ services:
     ports:
       - "8083:80"
     restart: unless-stopped
+    dns_search: []
+    restart: unless-stopped
 
 #APP
   web2-siteB:
-    build:
-      context: ./
+    build: 
+      context: ./sites/siteB
       dockerfile: Dockerfile
-    image: 
+    image: web2b
     container_name: web2-siteB
     networks:
       app_network:
@@ -71,6 +81,8 @@ services:
         ipv4_address: 172.20.0.14
     ports:
       - "8084:80"
+    restart: unless-stopped
+    dns_search: []
     restart: unless-stopped
 
 #Docker Networks
