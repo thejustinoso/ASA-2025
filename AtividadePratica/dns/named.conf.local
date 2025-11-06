@@ -2,9 +2,18 @@
 // Do any local configuration here
 //
 
-zone "pedro.br"{
+zone "siteA.local"{
     type master;
-    file "/etc/bind/db.pedro.br";
+    file "/etc/bind/siteA.local.zone";
+    allow-transfer {
+        127.0.0.1;
+    };
+};
+
+
+zone "siteB.local"{
+    type master;
+    file "/etc/bind/siteB.local.zone";
     allow-transfer {
         127.0.0.1;
     };

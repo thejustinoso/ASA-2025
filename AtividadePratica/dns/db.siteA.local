@@ -1,5 +1,5 @@
 
-; BIND data file for pedro.br zone
+; BIND data file for siteA.local zone
 ;
 $TTL	604800
 @	IN	SOA	dns-server. siteA.local. (
