@@ -6,8 +6,6 @@ services:
     build:
       context: ./dns
       dockerfile: Dockerfile
-      options:
-        --dns: 8.8.8.8
     image: dns-server
     container_name: dns-server
     ports:
@@ -21,8 +19,6 @@ services:
     build:
         context: ./sites/siteA-app
         dockerfile: Dockerfile
-        options:
-        --dns: 8.8.8.8
     image: web1a
     container_name: web1-siteA
     ports:
@@ -38,8 +34,6 @@ services:
     build:
       context: ./sites/siteA-www
       dockerfile: Dockerfile
-      options:
-        --dns: 8.8.8.8
     image: web1b
     container_name: web2-siteA
     ports:
@@ -55,8 +49,6 @@ services:
     build:
       context: ./sites/siteB-app
       dockerfile: Dockerfile
-      options:
-        --dns: 8.8.8.8
     image: web2a
     container_name: web1-siteB
     ports:
@@ -72,8 +64,6 @@ services:
     build: 
       context: ./sites/siteB-www
       dockerfile: Dockerfile
-      options:
-        --dns: 8.8.8.8
     image: web2b
     container_name: web2-siteB
     ports:
@@ -88,6 +78,7 @@ services:
 networks:
   app_network:
     ipam:
-      driver: bridge
+      # não está reconhecendo quando coloca-se "bridge"
+      driver: default
       config:
         - subnet: 172.20.0.0/24
