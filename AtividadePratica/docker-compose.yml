@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
 
   dns-server:
@@ -11,74 +9,65 @@ services:
     ports:
       - "53:53/udp"
     networks:
-      app_network:
-        ipv4_address: 172.20.0.10
+      - asa-network
     restart: unless-stopped
 
-  web1-siteA:
+  proxy:
     build:
-        context: ./sites/siteA-app
+      context: ./proxy
+      dockerfile: Dockerfile
+    image: proxy
+    container_name: proxy
+    hostname: www.pedro.asa.br
+    ports:
+      - "80:80"
+    networks:
+      - asa-network
+    restart: unless-stopped
+
+  web-siteA:
+    build:
+        context: ./sites/siteA-www
         dockerfile: Dockerfile
     image: web1a
-    container_name: web1-siteA
+    container_name: testA
     ports:
-        - "8081:80"
+        - "8080:80"
     restart: unless-stopped
     dns: 
       - 172.20.0.10 
     networks:
-      app_network:
-        ipv4_address: 172.20.0.11
+      - asa-network
 
-  web2-siteA:
+  web-siteB:
     build:
-      context: ./sites/siteA-www
-      dockerfile: Dockerfile
-    image: web1b
-    container_name: web2-siteA
-    ports:
-          - "8082:80"
-    restart: unless-stopped
-    dns: 
-      - 172.20.0.10 
-    networks:
-      app_network:
-        ipv4_address: 172.20.0.12
-
-  web1-siteB:
-    build:
-      context: ./sites/siteB-app
-      dockerfile: Dockerfile
-    image: web2a
-    container_name: web1-siteB
-    ports:
-      - "8083:80"
-    restart: unless-stopped
-    dns: 
-      - 172.20.0.10
-    networks:
-      app_network:
-        ipv4_address: 172.20.0.13
-
-  web2-siteB:
-    build: 
       context: ./sites/siteB-www
       dockerfile: Dockerfile
-    image: web2b
-    container_name: web2-siteB
+    image: web1b
+    container_name: testB
     ports:
-      - "8084:80"
+          - "8081:80"
     restart: unless-stopped
     dns: 
-      - 172.20.0.10
+      - 172.20.0.10 
     networks:
-      app_network:
-        ipv4_address: 172.20.0.14
+      - asa-network
+
+  mail:
+    build:
+      context: ./mail
+      dockerfile: Dockerfile
+    image: email
+    container_name: email
+    hostname: mail.pedro.asa.br
+    restart: always
+    tty: true
+    ports:
+      - "25:25/tcp"
+      - "587:587/tcp"
+    networks:
+      - asa-network
 
 networks:
-  app_network:
-    ipam:
-      # não está reconhecendo quando coloca-se "bridge"
-      driver: default
-      config:
-        - subnet: 172.20.0.0/24
+  asa-network:
+    driver: bridge

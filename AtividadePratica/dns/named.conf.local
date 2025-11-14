@@ -4,7 +4,7 @@
 
 zone "siteA.local"{
     type master;
-    file "/etc/bind/siteA.local.zone";
+    file "/etc/bind/db.siteA.local";
     allow-transfer {
         127.0.0.1;
     };
@@ -13,7 +13,7 @@ zone "siteA.local"{
 
 zone "siteB.local"{
     type master;
-    file "/etc/bind/siteB.local.zone";
+    file "/etc/bind/db.siteB.local";
     allow-transfer {
         127.0.0.1;
     };

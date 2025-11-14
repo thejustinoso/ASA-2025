@@ -1,11 +1,13 @@
 FROM ubuntu:latest
 
 RUN apt update -y && apt install bind9 dnsutils -y
+RUN chown -R bind:bind /var/cache/bind
+RUN chown -R bind:bind /var/lib/bind
 
 COPY named.conf.local /etc/bind/named.conf
 COPY named.conf.options /etc/bind/named.conf.options
-COPY db.siteA.local /etc/bind/db.siteA.lab
-COPY db.siteB.local /etc/bind/db.siteB.lab
+COPY db.siteA.local /etc/bind/db.siteA.local
+COPY db.siteB.local /etc/bind/db.siteB.local
 
 EXPOSE 53/tcp
 EXPOSE 53/udp
